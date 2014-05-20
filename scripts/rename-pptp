@@ -50,5 +50,7 @@ fi
 
 # Re-name the interface.  Log all errors to syslog.
 logger -p debug -t "vyatta xpptpd"  Re-naming $OLD_IFNAME to $NEW_IFNAME
+ip link set $OLD_IFNAME down
 ip link set dev $OLD_IFNAME name $NEW_IFNAME | \
     logger -p debug -t "vyatta xpptpd"
+ip link set $NEW_IFNAME up
